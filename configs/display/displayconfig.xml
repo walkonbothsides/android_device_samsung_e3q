@@ -87,6 +87,33 @@
         <darkeningLightDebounceMillis>2000</darkeningLightDebounceMillis>
         <brighteningLightDebounceIdleMillis>-1</brighteningLightDebounceIdleMillis>
         <darkeningLightDebounceIdleMillis>-1</darkeningLightDebounceIdleMillis>
+
+        <!-- AOD / doze specific brightness curve.
+             Ported from the stock firmware framework-res RRO:
+               config_autoBrightnessLevels_doze            = 1,10,30,50,100,500,1000,2000,3000
+               config_autoBrightnessDisplayValuesNits_doze = 2,5,10,55,64,82,139,198,331,490
+             first  = ambient lux. A leading 0 is implicit, per AOSP getLuxLevels().
+             second = backlight in [0,1]. Converted from the stock nits values through the
+                      stock panel nits<->backlight table (1252 steps, backlight range 0..1275).
+             Constraints enforced by DisplayBrightnessMappingConfig:
+               - the first lux value MUST be 0
+               - lux and backlight arrays MUST both be strictly increasing
+        -->
+        <luxToBrightnessMapping>
+            <map>
+                <point><first>0</first><second>0.001675</second></point>      <!--   2 nits -->
+                <point><first>1</first><second>0.004880</second></point>      <!--   5 nits -->
+                <point><first>10</first><second>0.009109</second></point>     <!--  10 nits -->
+                <point><first>30</first><second>0.036155</second></point>     <!--  55 nits -->
+                <point><first>50</first><second>0.040708</second></point>     <!--  64 nits -->
+                <point><first>100</first><second>0.049389</second></point>    <!--  82 nits -->
+                <point><first>500</first><second>0.074409</second></point>    <!-- 139 nits -->
+                <point><first>1000</first><second>0.097846</second></point>   <!-- 198 nits -->
+                <point><first>2000</first><second>0.145508</second></point>   <!-- 331 nits -->
+                <point><first>3000</first><second>0.196910</second></point>   <!-- 490 nits (capped) -->
+            </map>
+            <mode>doze</mode>
+        </luxToBrightnessMapping>
     </autoBrightness>
 
     <hdrBrightnessConfig>
@@ -102,4 +129,9 @@
         <type>com.samsung.sensor.auto_brightness</type>
         <name>STK33F11 Auto Brightness Sensor</name>
     </lightSensor>
+    <!-- Default AOD brightness (backlight in [0,1]) used when adaptive brightness is off.
+         ~4 nits, between the stock curve 0 lux (2 nits) and 1 lux (5 nits) points.
+         Without this the framework falls back to config_screenBrightnessDozeFloat = 0.0,
+         which renders AOD completely black. -->
+    <defaultDozeBrightness>0.004</defaultDozeBrightness>
 </displayConfiguration>
