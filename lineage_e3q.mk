@@ -37,7 +37,14 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 PRODUCT_NAME := lineage_e3q
 PRODUCT_DEVICE := e3q
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-S928B
+PRODUCT_MODEL := SM-S9280
 PRODUCT_MANUFACTURER := Samsung
+
+# Build fingerprint
+# AOSP auto-generates samsung/lineage_e3q/e3q:16/BP4A.251205.006/eng.uwu:user/release-keys
+# when BUILD_FINGERPRINT is empty (build/make/core/config.mk). Override it with the
+# stock SM-S9280 firmware fingerprint (variant/keys hardcoded to user/release-keys,
+# matching the fixed user build target).
+BUILD_FINGERPRINT := samsung/e3qzcx/e3q:16/BP4A.251205.006/S9280ZCS6DZF2:user/release-keys
 
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
