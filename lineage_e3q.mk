@@ -20,6 +20,15 @@ $(call inherit-product, device/samsung/e3q/device.mk)
 AVIUM_MAINTAINER ?= walkonbothsides
 AVIUM_SETTINGS_SOC_MODEL_NAME ?= Snapdragon 8 Gen 3 for Galaxy
 AVIUM_SETTINGS_DEVICE_CODENAME ?= e3q
+# Enable avium fake-prop spoofing (ro.avium.status_fake_prop=1 + 35 spoofed
+# props). NOTE: avium upstream feeds this flag through PRODUCT_SOONG_CONFIG_*,
+# which this tree's build/make does NOT consume at all (grep -rn
+# PRODUCT_SOONG_CONFIG build/ = 0 hits) -- the flag never reached Soong, so the
+# #ifdef branch in system/core/init was compiled out. Re-export it through the
+# real Soong config API so -DAVIUM_FORCE_SET_FAKE_PROP lands in init's cppflags
+# (avium_init_defaults / soong_config_variables in system/core/init/Android.bp).
+AVIUM_FORCE_SET_FAKE_PROP := true
+$(call soong_config_set,AVIUM,AVIUM_FORCE_SET_FAKE_PROP,true)
 WITH_GMS := true
 
 # Inherit from the Lineage configuration.
