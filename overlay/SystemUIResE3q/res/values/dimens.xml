@@ -6,8 +6,19 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- Default paddings for content around the corners. -->
-    <dimen name="rounded_corner_content_padding">0.0dip</dimen>
+    <!-- Default paddings for content around the corners.
+
+         AOSP's StatusBarContentInsetsProvider deliberately reserves the privacy
+         dot padding (ongoing_appops_dot_min_padding = 20dp) on the RIGHT edge
+         only, and relies on rounded_corner_content_padding to keep the LEFT side
+         balanced. With the stock AOSP default of 0dp the collapsed status bar
+         ends up with ~4dp of left padding but ~24dp on the right, which is
+         clearly visible on this device's large-radius panel.
+
+         Matching the value to ongoing_appops_dot_min_padding (20dp) makes
+         minLeft == minRight == 20dp, so the collapsed status bar is symmetric.
+         The expanded shade header is unaffected (it uses qs_panel_padding). -->
+    <dimen name="rounded_corner_content_padding">20.0dip</dimen>
 
     <!-- Height of the status bar header bar when on Keyguard -->
     <dimen name="status_bar_header_height_keyguard">@*android:dimen/status_bar_height</dimen>
