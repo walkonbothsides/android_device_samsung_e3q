@@ -1,3 +1,10 @@
+# Hardware attestation identity from the stock SM-S9280 build_props baseline.
+ro.product.brand_for_attestation=samsung
+ro.product.device_for_attestation=e3q
+ro.product.manufacturer_for_attestation=samsung
+ro.product.model_for_attestation=SM-S9280
+ro.product.name_for_attestation=e3qzcx
+
 # Fingerprint
 ro.vendor.fingerprint.type=udfps
 ro.vendor.fingerprint.sensor_location=720|2327|147
