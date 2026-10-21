@@ -1,0 +1,22 @@
+# Wakeup statistics exposed by e3q peripherals. The platform already grants
+# system_suspend read access to sysfs_wakeup; label only the wakeup subtrees.
+genfscon sysfs /devices/platform/i2c@50/i2c-50/50-0060/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/soc:qcom,qfs4008/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0057/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0066/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0066/max77775-charger/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0066/max77775-fuelgauge/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0066/max77775-usbc/wakeup u:object_r:sysfs_wakeup:s0
+# Both adapter numbers have been observed across device boots/builds.
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/99c000.i2c/i2c-58/58-0041/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/99c000.i2c/i2c-59/59-0041/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/af54000.qcom,dp_display/wakeup u:object_r:sysfs_wakeup:s0
+
+# power_supply_register() creates wakeupN directly below the supply device.
+# Prefixes end at "wakeup" so dynamically assigned IDs remain covered.
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0057/power_supply/pca9481-charger/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0066/max77775-charger/power_supply/max77775-charger/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0066/max77775-charger/power_supply/max77775-otg/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/990000.i2c/i2c-56/56-0066/max77775-fuelgauge/power_supply/max77775-fuelgauge/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/99c000.i2c/i2c-58/58-0041/power_supply/mfc-charger/wakeup u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/99c000.i2c/i2c-59/59-0041/power_supply/mfc-charger/wakeup u:object_r:sysfs_wakeup:s0
