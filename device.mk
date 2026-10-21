@@ -59,3 +59,7 @@ $(call inherit-product, device/samsung/sm8650-common/common.mk)
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/samsung/e3q/e3q-vendor.mk)
+
+# Kernel
+PRODUCT_PACKAGES += \
+    kernel
