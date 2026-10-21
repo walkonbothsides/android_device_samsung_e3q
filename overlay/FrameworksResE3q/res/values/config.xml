@@ -29,7 +29,7 @@
 
          @see https://www.w3.org/TR/SVG/paths.html#PathData
          -->
-    <string name="config_mainBuiltInDisplayCutout" translatable="false">M 0,0 H -9.066666666666667 V 29.86666666666667 H 9.066666666666667 V 0 H 0 Z @dp</string>
+    <string name="config_mainBuiltInDisplayCutout" translatable="false">M 0,0 H -9.066666666666667 V 34.13333333333333 H 9.066666666666667 V 0 H 0 Z @dp</string>
 
     <!-- Minimum screen brightness setting allowed by power manager.
          -2 is invalid so setting will resort to int value specified above.
